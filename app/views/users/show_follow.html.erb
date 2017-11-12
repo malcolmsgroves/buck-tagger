@@ -1,0 +1,8 @@
+<% provide(:title, @title) %>
+<div class="follow">
+  <%= render @user %>
+  <h3><%= @title %></h3>
+  <%= will_paginate @users %>
+  <%= render @users %>
+  <%= will_paginate @users %>
+</div>

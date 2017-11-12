@@ -5,4 +5,6 @@
   <% if @user == current_user %>
     <ul><%= link_to "Edit Profile", edit_user_registration_path %>
   <% end %>
+  <%= render "stats" %>
+  <%= render "follow_form" %>
 </div>
