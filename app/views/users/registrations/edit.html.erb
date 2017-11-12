@@ -4,6 +4,17 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birthdate %>
+    <%= f.date_select :birthdate, start_year: 1950,
+                                  end_year: Date.today.year - 5 %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>

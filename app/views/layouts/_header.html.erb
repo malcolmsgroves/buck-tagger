@@ -1,0 +1,9 @@
+<% if current_user %>
+  <ul>
+    <%= link_to 'Home', root_path %>
+    <%= link_to 'Profile', user_path(current_user) %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  </ul>
+<% else %>
+  <li><%= link_to 'Login', new_user_session_path %></li>
+<% end %>
