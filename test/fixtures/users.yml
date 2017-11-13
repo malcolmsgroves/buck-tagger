@@ -1,9 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
+michael:
+  name: Michael Example
+  email: michael@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "foobar") %>
+  birthdate: 7 October 1988
 
-two:
-  name: MyString
-  email: MyString
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  encrypted_password: <%= Devise::Encryptor.digest(User, "foobar") %>
+  birthdate: <%= Faker::Date.between(30.years.ago, 10.years.ago) %>
+
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+  encrypted_password: <%= Devise::Encryptor.digest(User, "foobar") %>
+  birthdate: <%= Faker::Date.between(30.years.ago, 10.years.ago) %>
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+  encrypted_password: <%= Devise::Encryptor.digest(User, "foobar") %>
+  birthdate: <%= Faker::Date.between(30.years.ago, 10.years.ago) %>

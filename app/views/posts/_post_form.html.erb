@@ -1,0 +1,6 @@
+<div class="post-form">
+  <%= form_for @post do |f| %>
+    <%= f.text_area :content, placeholder: "Tag that buck..." %>
+    <%= f.submit "Post" %>
+  <% end %>
+</div>

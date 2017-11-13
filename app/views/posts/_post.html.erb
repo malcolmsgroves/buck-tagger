@@ -1,0 +1,8 @@
+<div class="post">
+  <h3><%= post.user.name %></h3>
+  <p><%= post.content %></p>
+  <strong>Posted <%= time_ago_in_words(post.created_at) %> ago</strong>
+  <% if current_user?(post.user) %>
+    <%= link_to "delete post", post_path(post.id), method: :delete %>
+  <% end %>
+</div>
