@@ -12,6 +12,9 @@
                       password: "foobar",
                       password_confirmation: "foobar",
                       email: "example#{x}@hunters.com")
+  3.times do
+    user.posts.create!(content: Faker::Lorem.sentence(20))
+  end
 end
 
 # Following relationships

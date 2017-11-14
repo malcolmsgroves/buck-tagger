@@ -1,0 +1,6 @@
+<%= form_for(current_user.likes.find_by(likeable: object),
+             html: { method: :delete } ) do |f| %>
+  <div><%= f.hidden_field :likeable_id, value: object.id %></div>
+  <div><%= f.hidden_field :likeable_type, value: object.class.name %></div>
+  <%= f.submit "Unlike" %>
+<% end %>

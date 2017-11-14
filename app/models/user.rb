@@ -19,7 +19,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes,    dependent: :destroy
 
-  has_many :liked_posts,     through: :likes, source: :post
+  has_many :liked_posts,     through: :likes,
+                             source: :likeable,
+                             source_type: 'Post'
+  has_many :liked_comments,  through: :likes,
+                             source: :likeable,
+                             source_type: 'Comment'
   has_many :commented_posts, through: :comments, source: :post
 
   # Follows a user.
@@ -37,27 +42,23 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  # Likes a post
-  def like(post)
-    likes.create!(post_id: post.id)
+  # Returns true if the current user likes the likeable
+  def like?(likeable)
+    likes.where(likeable: likeable).present?
   end
 
-  # Unlikes a post
-  def unlike(post)
-    like = likes.find_by(post_id: post.id)
+  # Likes a post or comment
+  def like(likeable)
+    likes.create(likeable: likeable)
+  end
+
+  # Unlikes a post or comment
+  def unlike(likeable)
+    like = likes.find_by(likeable: likeable)
     likes.delete(like)
   end
 
-  # Comments on a post
-  def comment(parameters)
-    comments.create!(post_id: parameters[:post].id,
-                     content: parameters[:content])
-  end
 
-  # Delete a comment
-  def uncomment(comment_to_delete)
-    comments.delete(comment_to_delete)
-  end
 
   def feed
     following_ids = "SELECT followed_id FROM relationships

@@ -1,10 +1,17 @@
-<h2><%= @user.name %></h2>
+<% provide(:title, @user.name) %>
+<h1><%= @user.name %></h1>
 <div class="profile">
   <ul>Email: <%= @user.email %></ul>
   <ul>Birthdate: <%= @user.birthdate %></ul>
   <% if @user == current_user %>
-    <ul><%= link_to "Edit Profile", edit_user_registration_path %>
+    <ul><%= link_to "Edit Profile", edit_user_registration_path %></ul>
   <% end %>
   <%= render "stats" %>
   <%= render "follow_form" %>
+</div>
+<h2>Posts</h2>
+<div class="posts">
+  <%= will_paginate @posts %>
+  <%= render @posts %>
+  <%= will_paginate @posts %>
 </div>

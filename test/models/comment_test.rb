@@ -25,11 +25,12 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test "should comment on the post" do
-    comment = @user.comment(post: @post, content: @content)
+    comment = @post.comments.create!(user_id: @user.id, content: @content)
     assert @user.commented_posts.include?(@post)
     assert @post.commenters.include?(@user)
-    @user.uncomment(comment)
+    @post.comments.delete(comment)
     assert_not @user.commented_posts.include?(@post)
     assert_not @post.commenters.include?(@user)
   end
+
 end

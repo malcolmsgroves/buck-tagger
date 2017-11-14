@@ -1,20 +1,25 @@
 class LikesController < ApplicationController
 
   def create
-    current_user.likes.create!(like_params)
-    flash[:success] = "You liked the post"
-    redirect_to root_path
+    current_user.likes.create(like_params)
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   def destroy
-    Post.find(params[:id]).destroy
-    flash[:success] = "You unliked the post"
-    redirect_to root_path
+    @like = Like.find_by(like_params)
+    current_user.likes.delete(@like)
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   private
     def like_params
-      params.require(:like).permit(:content)
+      params.require(:like).permit(:likeable_id, :likeable_type)
     end
 
 end

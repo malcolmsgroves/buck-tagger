@@ -1,0 +1,5 @@
+<%= form_for(current_user.likes.build) do |f| %> 
+  <div><%= f.hidden_field :likeable_id, value: object.id %></div>
+  <div><%= f.hidden_field :likeable_type, value: object.class.name %></div>
+  <%= f.submit "Like" %>
+<% end %>
