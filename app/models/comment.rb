@@ -7,4 +7,5 @@ class Comment < ApplicationRecord
   has_many :likes, as: :likeable,
                    dependent: :destroy
   has_many :likers, through: :likes, source: :user
+  has_one :notification, as: :notifiable, dependent: :destroy
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PostsControllerTest < ActionDispatch::IntegrationTest
+class NotificationsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @password = "foobar"
@@ -8,8 +8,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     sign_in(user: @user, password: @password)
   end
 
-  test "should show the post" do
-    get post_path(posts(:orange))
+  test "should get index" do
+    get notifications_path
     assert_response :success
   end
+
 end

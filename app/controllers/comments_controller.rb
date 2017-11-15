@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
-
+  before_action :authenticate_user!
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save
+      @comment.create_notification!(actor_id: current_user.id,
+                                    recipient_id: @comment.post.user.id)
       flash[:success] = "Comment successfully created"
       redirect_to root_path
     else

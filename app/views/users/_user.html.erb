@@ -1,6 +1,6 @@
 <ul>
   <%= link_to user.name, user_path(user) %>
-  <% if !current_user.following?(user) %>
+  <% if !current_user.following?(user)  && !current_user?(user) %>
     <%= render "index_follow", object: user %>
   <% end %>
 </ul>

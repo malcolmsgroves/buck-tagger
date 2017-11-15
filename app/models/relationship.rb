@@ -4,4 +4,6 @@ class Relationship < ApplicationRecord
 
   validates :followed_id, presence: true
   validates :follower_id, presence: true
+
+  has_one :notification, as: :notifiable, dependent: :destroy
 end

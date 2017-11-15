@@ -1,7 +1,10 @@
 class LikesController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def create
-    current_user.likes.create(like_params)
+    @like = current_user.likes.create!(like_params)
+    @like.create_notification!(actor_id: current_user.id,
+                               recipient_id: @like.likeable.user.id)
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
@@ -10,7 +13,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find_by(like_params)
-    current_user.likes.delete(@like)
+    current_user.likes.destroy(@like)
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, omniauth_providers: [:google_oauth2]
 
   validates :name, presence: true
   validates :birthdate, presence: true
@@ -27,14 +28,19 @@ class User < ApplicationRecord
                              source_type: 'Comment'
   has_many :commented_posts, through: :comments, source: :post
 
+  has_many :sent_notifications, class_name: 'Notification',
+                                foreign_key: :actor_id
+  has_many :received_notifications, class_name: 'Notification',
+                                    foreign_key: :recipient_id
+
   # Follows a user.
   def follow(other_user)
-    following << other_user
+    active_relationships.create!(followed_id: other_user.id)
   end
 
   # Unfollows a user.
   def unfollow(other_user)
-    following.delete(other_user)
+    following.destroy(other_user)
   end
 
   # Returns true if the current user is following the other user.
@@ -55,7 +61,11 @@ class User < ApplicationRecord
   # Unlikes a post or comment
   def unlike(likeable)
     like = likes.find_by(likeable: likeable)
-    likes.delete(like)
+    likes.destroy(like)
+  end
+
+  def notification_feed(page)
+    received_notifications.paginate(page: page).order(created_at: :desc)
   end
 
 
@@ -66,4 +76,28 @@ class User < ApplicationRecord
     Post.where("user_id IN (#{following_ids}) " +
                 "OR user_id = :user_id", user_id: id).order(created_at: :desc)
   end
+
+
+
+  def self.find_for_google_oauth2(access_token, signed_in_resource = nil)
+    data = access_token.info
+    user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => access_token.info.email).first
+      if registered_user
+        return registered_user
+      else
+        access_token.provider = "Google"
+        user = User.create(first_name: data[“first_name”],
+          last_name: data[“last_name”],
+          provider:access_token.provider,
+          email: data[“email”],
+          password: Devise.friendly_token[0,20],
+          confirmed_at:Time.zone.now) # don’t send any confirmation mail
+      end
+    end
+  end
+
 end
