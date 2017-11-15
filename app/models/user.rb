@@ -90,12 +90,11 @@ class User < ApplicationRecord
         return registered_user
       else
         access_token.provider = "Google"
-        user = User.create(first_name: data[“first_name”],
-          last_name: data[“last_name”],
-          provider:access_token.provider,
-          email: data[“email”],
-          password: Devise.friendly_token[0,20],
-          confirmed_at:Time.zone.now) # don’t send any confirmation mail
+        user = User.create(name: data["name"],
+          provider: access_token.provider,
+          email: data["email"],
+          birthdate: "1 January 2000",
+          password: Devise.friendly_token[0,20])
       end
     end
   end
