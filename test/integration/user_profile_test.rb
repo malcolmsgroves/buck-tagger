@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UserShowTest < ActionDispatch::IntegrationTest
+  include ApplicationHelper
 
   def setup
     @user = users(:michael)
@@ -10,7 +11,7 @@ class UserShowTest < ActionDispatch::IntegrationTest
   test "profile display" do
     get user_path(@user)
     assert_equal request.original_fullpath, user_path(@user)
-    assert_select 'title', @user.name
+    assert_select 'title', full_title(@user.name)
     assert_select 'h1', text: @user.name
     # assert_select 'h1>img.gravatar'
 
@@ -21,8 +22,8 @@ class UserShowTest < ActionDispatch::IntegrationTest
 
     # assert_match @user.microposts.count.to_s, response.body
     # assert_select 'div.pagination'
-    # @user.microposts.paginate(page: 1).each do |micropost|
-    #  assert_match micropost.content, response.body
-    # end
+    @user.posts.paginate(page: 1).each do |post|
+     assert_match post.content, response.body
+    end
   end
 end

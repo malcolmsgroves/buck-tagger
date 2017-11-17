@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'devise'
-gem 'will_paginate'
+gem 'will_paginate',           '3.1.6'
 gem 'faker'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '3.3.7'
