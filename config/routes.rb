@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
 
-  devise_for :users, :controllers => { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks",
+                                    registrations: "registrations" }
   resources :users do
     member do
       get :following, :followers

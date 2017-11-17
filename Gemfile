@@ -11,6 +11,7 @@ gem 'faker'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '3.3.7'
 gem 'omniauth-google-oauth2'
+gem "letter_opener", :group => :development
 #gem 'oauth2'
 #gem 'omniauth'
 
