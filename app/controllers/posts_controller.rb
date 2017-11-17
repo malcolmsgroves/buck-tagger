@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
   def show
     @post = Post.find(params[:id])
   end
@@ -10,6 +10,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post successfully created"
       redirect_to root_path
     else
+      @feed_items = []
       render 'static_pages/home'
     end
   end
@@ -22,6 +23,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :picture)
     end
 end

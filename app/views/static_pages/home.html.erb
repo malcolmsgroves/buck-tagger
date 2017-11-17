@@ -1,9 +1,4 @@
 <% provide :title, "Home" %>
 <h1>Buck Tagger</h1>
 <%= render 'posts/post_form' %>
-<h2>Feed</h2>
-<div class="feed">
-  <%= will_paginate @feed_items %>
-  <%= render @feed_items %>
-  <%= will_paginate @feed_items %>
-</div>
+<%= render 'posts/feed' %>
