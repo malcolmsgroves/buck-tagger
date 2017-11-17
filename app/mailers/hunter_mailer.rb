@@ -5,6 +5,6 @@ class HunterMailer < ApplicationMailer
   def welcome(user)
     @user = user
     # @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Thank you for your booking!')
+    mail(to: @user.email, subject: 'Thanks for signing up for Buck Tagger!')
   end
 end
