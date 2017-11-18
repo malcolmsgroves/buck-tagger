@@ -1,4 +1,14 @@
 <% provide :title, "Home" %>
-<h1>Buck Tagger</h1>
-<%= render 'posts/post_form' %>
-<%= render 'posts/feed' %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 section">
+      <a href="<%= user_path @current_user %>">
+        <h3><%= current_user.name %></h3>
+      </a>
+      <%= render 'posts/post_form' %>
+    </div>
+    <div class="col-sm-6">
+      <%= render 'posts/feed' %>
+    </div>
+  </div>
+</div>

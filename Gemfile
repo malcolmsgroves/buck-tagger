@@ -9,16 +9,12 @@ gem 'devise'
 gem 'will_paginate',           '3.1.6'
 gem 'faker'
 gem 'jquery-rails'
-# gem 'bootstrap-sass', '3.3.7'
-gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'omniauth-google-oauth2'
 gem "letter_opener", :group => :development
 gem 'carrierwave',             '1.1.0'
 gem 'mini_magick',             '4.7.0'
 gem 'fog',                     '1.40.0'
 gem 'bootstrap-will_paginate', '1.0.0'
-#gem 'oauth2'
-#gem 'omniauth'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -28,6 +24,8 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass', '~> 3.3.7'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

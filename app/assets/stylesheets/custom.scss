@@ -1,6 +1,8 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+/* resets */
 
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
 
 /* Registration Background */
 
@@ -21,4 +23,37 @@ body.devise {
       margin-bottom: 15px;
     }
   }
+}
+
+/* Header */
+
+#logo {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar-custom {
+  background-color: white;
+}
+
+/* body */
+
+body {
+  background-color: #F0F0F0;
+}
+
+/* sections */
+
+.section {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  * {
+    margin-bottom: 5px;
+  }
+  margin-bottom: 15px;
+}
+
+textarea {
+  width: 80%;
 }

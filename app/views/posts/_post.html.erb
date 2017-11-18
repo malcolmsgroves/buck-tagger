@@ -1,9 +1,12 @@
-<div class="post">
+<div class="post row section">
   <h3><%= post.user.name %></h3>
   <p><%= post.content %></p>
   <%= image_tag post.picture.url if post.picture? %>
-  <strong><%= pluralize(post.likes.count, "like") %></strong>
-  <strong><%= render 'likes/like_form', object: post %></strong>
+  <div class="like">
+    <div><%= pluralize(post.likes.count, "like") %></div>
+    <span><%= render 'likes/like_form', object: post %></span>
+  </div>
+
   <div class="comments">
     <%= "Comments" if post.comments.any? %>
     <%= render post.comments %>

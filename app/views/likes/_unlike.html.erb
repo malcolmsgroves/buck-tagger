@@ -2,5 +2,5 @@
              html: { method: :delete } ) do |f| %>
   <div><%= f.hidden_field :likeable_id, value: object.id %></div>
   <div><%= f.hidden_field :likeable_type, value: object.class.name %></div>
-  <%= f.submit "Unlike" %>
+  <%= f.submit "Unlike", class: 'btn btn-primary' %>
 <% end %>
