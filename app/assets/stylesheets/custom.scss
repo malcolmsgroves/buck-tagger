@@ -1,0 +1,24 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+/* Registration Background */
+
+body.devise {
+  background-image: url("login_background.jpg");
+  background-size: cover;
+  font-family: Helvetica;
+  color: black;
+
+  form {
+    background: #F8F8F8;
+    position: relative;
+    top: 100px;
+    width: 400px;
+    padding: 30px;
+    margin: auto;
+    :last-child {
+      margin-bottom: 15px;
+    }
+  }
+}

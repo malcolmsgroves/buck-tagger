@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :show, :following, :followers]
   def index
     @users = User.paginate(page: params[:page])
   end
