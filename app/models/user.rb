@@ -33,6 +33,8 @@ class User < ApplicationRecord
   has_many :received_notifications, class_name: 'Notification',
                                     foreign_key: :recipient_id
 
+  mount_uploader :picture, PictureUploader
+
   # Follows a user.
   def follow(other_user)
     active_relationships.create!(followed_id: other_user.id)

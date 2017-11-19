@@ -3,6 +3,7 @@
   <div class="col-sm-12">
     <div class="profile section">
       <h1><%= @user.name %></h1>
+      <%= image_tag(@user.picture.url, id: "profile") if @user.picture? %>
       <ul>
         <li>Email: <%= @user.email %></li>
         <li>Birthdate: <%= @user.birthdate %></li>
