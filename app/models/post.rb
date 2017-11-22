@@ -9,6 +9,8 @@ class Post < ApplicationRecord
                    dependent: :destroy
   has_many :commenters, through: :comments, source: :user
   has_many :likers,     through: :likes, source: :user
+  has_one :deer
+  accepts_nested_attributes_for :deer
 
   default_scope -> { order(created_at: :desc) }
 

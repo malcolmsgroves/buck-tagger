@@ -1,6 +1,20 @@
 <div class="post-form">
   <%= form_for @post do |f| %>
     <%= render "shared/error_messages", object: f.object %>
+    <%= f.fields_for :deer do |ff| %>
+
+      <%= ff.label(:weight) %>
+      <%= ff.number_field(:weight, class: "form-control") %>
+
+      <%= ff.label(:sex) %>
+      <%= ff.select(:sex, @sex_options) %>
+
+      <%= ff.label(:season) %>
+      <%= ff.select(:season, @season_options) %>
+
+      <%= ff.label(:county) %>
+      <%= ff.select(:county_id, @county_options) %>
+    <% end %>
     <%= f.text_area :content, placeholder: "Tag that buck..." %>
     <div><%= f.submit "Post", class: "btn btn-primary" %></div>
     <span class="picture">
