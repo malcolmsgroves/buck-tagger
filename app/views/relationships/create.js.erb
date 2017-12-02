@@ -1,5 +1,16 @@
+console.log('executing')
 $("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
 $("#followers").html('<%= @user.followers.count %>');
 
-// Deletes follow button in users list
-$("#index_follow").html("");
+const id = "<%= @user.id %>";
+$(`.index_follow_form#${id}`).html("<%= escape_javascript(render('users/unfollow')) %>");
+
+// Changes follow button in users list
+/*
+const id = "<%= @user.id %>"
+console.log($(`.index_follow#${id}`))
+let previousForm = $(`.index_follow#${id}`)
+let parent = previousForm.parent()
+previousForm.remove()
+parent.append("<%= escape_javascript(render('users/index_unfollow', object: @user)) %>");
+*/

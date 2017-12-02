@@ -1,2 +1,14 @@
 $("#follow_form").html("<%= escape_javascript(render('users/follow')) %>");
 $("#followers").html('<%= @user.followers.count %>');
+
+const id = "<%= @user.id %>";
+$(`.index_follow_form#${id}`).html("<%= escape_javascript(render('users/follow')) %>");
+console.log('no errors');
+/*
+const id = "<%= @user.id %>"
+console.log($(`.index_unfollow#${id}`))
+let previousForm = $(`.index_unfollow#${id}`)
+const parent = previousForm.parent()
+previousForm.remove()
+parent.append("<%= escape_javascript(render('users/index_follow', object: @user)) %>")
+*/
