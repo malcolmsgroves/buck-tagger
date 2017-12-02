@@ -5,8 +5,6 @@ class RelationshipsController < ApplicationController
     @relationship = current_user.follow(@user)
     @relationship.create_notification!(actor_id: current_user.id,
                                        recipient_id: @user.id)
-    puts 'creating'
-    puts
     respond_to do |format|
       format.html { redirect_to @user }
       format.js

@@ -1,7 +1,9 @@
-<div class="index_follow_form" id="<%= object.id %>">
-  <% if !current_user.following?(object)  && !current_user?(object) %>
-    <%= render "index_follow", object: object %>
-  <% elsif !current_user?(object) %>
-    <%= render "index_unfollow", object: object %>
-  <% end %>
-</div>
+<% unless current_user?(user) %>
+  <div class="index_follow_form" id="<%= user.id %>">
+    <% if current_user.following?(user) %>
+      <%= render partial: "unfollow", locals: { user: user } %>
+    <% else %>
+      <%= render partial: "follow", locals: { user: user } %>
+    <% end %>
+  </div>
+<% end %>

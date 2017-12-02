@@ -1,4 +1,5 @@
-<ul>
+<div class="user-item">
+  <%= image_tag(user.picture.url, id: "profile") if user.picture? %>
   <%= link_to user.name, user_path(user) %>
-  <%= render "index_follow_form", object: user %>
-</ul>
+  <span class="user-form"><%= render partial: "index_follow_form", locals: { user: user } %></span>
+</div>
