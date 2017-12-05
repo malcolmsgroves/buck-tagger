@@ -1,12 +1,14 @@
 /* resets */
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, button {
   margin: 0;
 }
 
 .inline {
   display: inline;
 }
+
+
 
 /* Registration Background */
 
@@ -86,4 +88,19 @@ img#profile {
   padding-bottom: 25px;
   padding-top: 10px;
   border-bottom: 1px solid grey;
+}
+
+/* post form */
+
+.error {
+  color: red;
+}
+
+select {
+  margin-right: 10px;
+}
+
+.current_tab {
+  background-color: #79D76E;
+  color: white;
 }

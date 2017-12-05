@@ -5,7 +5,10 @@
       <a href="<%= user_path @current_user %>">
         <h3><%= current_user.name %></h3>
       </a>
-      <%= render 'posts/post_form' %>
+      <button class="tab btn btn-secondary" id="deer">Deer</button>
+      <button class="tab btn btn-secondary" id="scout">Scout</button>
+      <%= render 'posts/deer_form' %>
+      <%= render 'posts/scout_form' %>
     </div>
     <div class="col-sm-6">
       <%= render 'posts/feed' %>
