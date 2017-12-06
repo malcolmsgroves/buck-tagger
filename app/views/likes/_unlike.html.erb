@@ -1,9 +1,7 @@
-
 <%= form_for(current_user.likes.find_by(likeable: likeable),
              html: { method: :delete },
-             url: like_path(current_user.likes.find_by(likeable: likeable).id),
              remote: true) do |f| %>
-  <div><%= f.hidden_field :likeable_id, value: likeable.id %></div>
-  <!-- <div><%= f.hidden_field :likeable_type, value: likeable.class.name %></div> -->
+  <%= f.hidden_field :likeable_id, value: likeable.id %>
+  <%= f.hidden_field :likeable_type, value: likeable.class.name %>
   <%= f.submit "Unlike", class: 'btn btn-primary' %>
 <% end %>

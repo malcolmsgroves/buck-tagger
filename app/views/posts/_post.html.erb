@@ -1,5 +1,5 @@
 <div class="post section">
-  <h3><%= post.user.name %></h3>
+  <h3><a href="<%= user_path(post.user) %>"> <%= post.user.name %> </a></h3>
   <p><%= post.content %></p>
   <%= image_tag post.picture.url if post.picture? %>
   <% if post.deer %>
@@ -7,20 +7,20 @@
     <div><strong>Points: </strong><%= post.deer.points %></div>
     <div><strong>Season: </strong></strong><%= post.deer.season %></div>
     <div><strong>County: </strong><%= post.deer.county.name %></div>
-
   <% end %>
-  <div class="like">
-    <div><%= pluralize(post.likes.count, "like") %></div>
-    <span><%= render partial: 'likes/like_form', locals: { likeable: post } %></span>
-  </div>
-
-  <div class="comments">
-    <%= "Comments" if post.comments.any? %>
-    <%= render post.comments %>
-    <%= render "shared/comment_form", object: post %>
+  <div class="Post like" id="<%= post.id %>">
+    <%= render partial: 'likes/like_form', locals: { likeable: post } %>
   </div>
   <strong>Posted <%= time_ago_in_words(post.created_at) %> ago</strong>
   <% if current_user?(post.user) %>
     <%= link_to "delete", post_path(post.id), method: :delete %>
   <% end %>
+
+
+  <div class="comments">
+    <%= render post.comments %>
+    <%= render partial: "shared/comment_form", locals: { post: post } %>
+  </div>
+
+
 </div>

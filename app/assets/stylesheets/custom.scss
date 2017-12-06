@@ -61,7 +61,7 @@ body {
 }
 
 textarea {
-  width: 80%;
+  width: 75%;
 }
 
 .post {
@@ -103,4 +103,29 @@ select {
 .current_tab {
   background-color: #79D76E;
   color: white;
+}
+
+.comments {
+  margin: 25px 25px 0 50px;
+}
+
+.like {
+  clear: both;
+  > form {
+    float: right;
+  }
+}
+
+.comment-form {
+  > form > input[type="submit"] {
+     /* float: right; */
+  }
+}
+
+#deer_form {
+  position: sticky;
+}
+#map {
+  height: 200px;
+  width: 90%;
 }

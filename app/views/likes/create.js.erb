@@ -1,4 +1,4 @@
 const id = "<%= @likeable.id %>"; const type = "<%= @likeable.class.name %>";
 
 
-$(`.${type}#${id}`).html("<%= escape_javascript(render(partial: 'unlike', locals: { likeable: @likeable })) %>");
+$(`.${type}#${id}`).html("<%= escape_javascript(render(partial: 'like_form', locals: { likeable: @likeable })) %>");

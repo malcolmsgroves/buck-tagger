@@ -22,6 +22,7 @@
         <%= ff.select(:county_id, @county_options) %>
       </div>
     <% end %>
+    <div id="map"></div>
     <div><%= f.text_area :content, placeholder: "Tag that buck..." %></div>
     <div><%= f.submit "Post", class: "btn btn-primary" %></div>
     <span class="picture">
@@ -38,4 +39,8 @@
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
   });
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjwq7jh0cqrdKuqFlQ5GDX3ldFTbChJ8M&callback=initMap">
 </script>

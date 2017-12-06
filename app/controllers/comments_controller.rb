@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       flash[:success] = "Comment successfully created"
       redirect_to root_path
     else
-      render 'static_pages/home'
+      redirect_to root_path
     end
   end
 
