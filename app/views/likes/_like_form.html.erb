@@ -1,7 +1,9 @@
 <!-- When more advanced, add AJAX to automatically update
      the like/unlike buttons -->
-<% if current_user.like?(object) %>
-  <%= render 'likes/unlike', object: object %>
-<% else %>
-  <%= render 'likes/like', object: object %>
-<% end %>
+<div class="<%= likeable.class.name %>" id="<%= likeable.id %>">
+  <% if current_user.like?(likeable) %>
+    <%= render partial: 'likes/unlike', locals: { likeable: likeable } %>
+  <% else %>
+    <%= render partial: 'likes/like', locals: { likeable: likeable } %>
+  <% end %>
+</div>

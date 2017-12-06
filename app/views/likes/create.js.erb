@@ -1,2 +1,4 @@
-$("#like_form").html("<%= escape_javascript(render('shared/unlike')) %>");
-$("#likes").html('<%= "meh" %>');
+const id = "<%= @likeable.id %>"; const type = "<%= @likeable.class.name %>";
+
+
+$(`.${type}#${id}`).html("<%= escape_javascript(render(partial: 'unlike', locals: { likeable: @likeable })) %>");

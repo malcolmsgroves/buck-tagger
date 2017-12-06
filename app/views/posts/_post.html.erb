@@ -11,7 +11,7 @@
   <% end %>
   <div class="like">
     <div><%= pluralize(post.likes.count, "like") %></div>
-    <span><%= render 'likes/like_form', object: post %></span>
+    <span><%= render partial: 'likes/like_form', locals: { likeable: post } %></span>
   </div>
 
   <div class="comments">
