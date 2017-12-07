@@ -18,6 +18,11 @@
   </div>
 </div>
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjwq7jh0cqrdKuqFlQ5GDX3ldFTbChJ8M&callback=initMap">
+<script>
+  $(function() {
+    validatePostForm();
+    postTab();
+    removePin();
+    initMap();
+  })
 </script>

@@ -88,9 +88,3 @@ function placeMarker(location) {
 function updateLocation(location) {
   $('#form_location').val(JSON.stringify(location));
 }
-
-$(function() {
-  validatePostForm();
-  postTab();
-  removePin();
-})
