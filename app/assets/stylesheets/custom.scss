@@ -51,6 +51,7 @@ body {
 /* sections */
 
 .section {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: white;
   padding: 15px;
   border-radius: 5px;
@@ -67,6 +68,11 @@ textarea {
 .post {
   img {
     margin: auto;
+    width: 100%;
+    padding: 10px;
+  }
+  &.deer {
+    border: 2px solid #FF6600;
   }
 }
 
@@ -110,22 +116,29 @@ select {
 }
 
 .like {
-  clear: both;
   > form {
-    float: right;
+    display: inline;
   }
 }
 
 .comment-form {
   > form > input[type="submit"] {
-     /* float: right; */
+     float: right;
   }
 }
 
-#deer_form {
-  position: sticky;
-}
 #map {
   height: 200px;
   width: 90%;
+  cursor: pointer;
+}
+
+.post-map {
+  height: 600px;
+  width: 80%;
+  margin: auto;
+}
+
+.form-control {
+  width: 50%;
 }

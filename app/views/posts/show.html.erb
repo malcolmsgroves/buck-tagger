@@ -1,1 +1,28 @@
-<%= render @post %>
+<% deer_class = @post.deer ? 'deer' : '' %>
+<div class="post section <%= deer_class %>">
+  <div class="post-header">
+    <h3><a href="<%= user_path(@post.user) %>"> <%= @post.user.name %> </a></h3>
+    <p><%= @post.content %></p>
+    <%= image_tag @post.picture.url if @post.picture? %>
+    <% if @post.deer %>
+      <div><strong>Weight: </strong><%= @post.deer.weight %></div>
+      <div><strong>Points: </strong><%= @post.deer.points %></div>
+      <div><strong>Season: </strong></strong><%= @post.deer.season %></div>
+    <% end %>
+  </div>
+  <div class="Post like" id="<%= @post.id %>">
+    <%= render partial: 'likes/like_form', locals: { likeable: @post } %>
+  </div>
+  <strong>Posted <%= time_ago_in_words(@post.created_at) %> ago</strong>
+  <% if current_user?(@post.user) %>
+    <%= link_to "delete", post_path(@post.id), method: :delete %>
+  <% end %>
+
+
+  <div class="comments">
+    <%= render @post.comments %>
+    <%= render partial: "shared/comment_form", locals: { post: @post } %>
+  </div>
+
+
+</div>

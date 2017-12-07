@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
 
   mount_uploader :picture, PictureUploader
+  serialize :location, JSON
 
   # Comments on a post
   def comment(text)

@@ -3,5 +3,5 @@
              remote: true) do |f| %>
   <%= f.hidden_field :likeable_id, value: likeable.id %>
   <%= f.hidden_field :likeable_type, value: likeable.class.name %>
-  <%= f.submit "Unlike", class: 'btn btn-primary' %>
+  <%= f.submit "Unlike", class: 'btn btn-danger' %>
 <% end %>

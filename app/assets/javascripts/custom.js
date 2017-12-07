@@ -1,4 +1,5 @@
 console.log('in');
+marker = null;
 
 function validatePostForm() {
 
@@ -8,7 +9,7 @@ function validatePostForm() {
       'post[content]': 'required',
       'post[deer_attributes][sex]': 'required',
       'post[deer_attributes][season]': 'required',
-      'post[deer_attributes][county_id]': 'required',
+      'post[deer_attributes][points]': 'required',
     }
   });
 
@@ -44,16 +45,52 @@ function postTab() {
   $deer_tab.click();
 }
 
+
 function initMap() {
-  let uluru = {lat: -25.363, lng: 131.044};
+
+  let uluru = {lat: 44, lng: -72};
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: uluru
+    zoom: 6,
+    center: uluru,
+    mapTypeId: 'terrain'
+  });
+
+  google.maps.event.addListener(map, 'click', function(event) {
+     placeMarker(event.latLng);
   });
 }
 
+function removePin() {
+  $('#remove_pin').on('click', function(e) {
+    marker.setMap(null)
+    marker = null
+    $('#form_location').val('')
+  })
+}
+
+
+
+function placeMarker(location) {
+  console.log(location);
+  if (!marker) {
+    console.log('marking');
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  } else {
+    console.log('setting');
+    marker.setPosition(location);
+  }
+  updateLocation(location);
+}
+
+function updateLocation(location) {
+  $('#form_location').val(JSON.stringify(location));
+}
+
 $(function() {
-  console.log('initiated');
   validatePostForm();
   postTab();
+  removePin();
 })

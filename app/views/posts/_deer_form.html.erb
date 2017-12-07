@@ -18,15 +18,16 @@
       </div>
 
       <div>
-        <%= ff.label(:county) %>
-        <%= ff.select(:county_id, @county_options) %>
+        <%= ff.label(:points) %>
+        <%= ff.number_field(:points, class: "form-control") %>
       </div>
     <% end %>
-    <div id="map"></div>
+    <%= f.hidden_field :location, value: '', id: "form_location" %>
     <div><%= f.text_area :content, placeholder: "Tag that buck..." %></div>
     <div><%= f.submit "Post", class: "btn btn-primary" %></div>
     <span class="picture">
-      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png',
+      <%= f.file_field :picture, value: "Add Picture",
+                                 accept: 'image/jpeg,image/gif,image/png',
                                  class: "btn" %>
     </span>
   <% end %>
@@ -39,8 +40,4 @@
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
   });
-</script>
-
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjwq7jh0cqrdKuqFlQ5GDX3ldFTbChJ8M&callback=initMap">
 </script>

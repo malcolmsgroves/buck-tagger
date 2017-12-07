@@ -1,4 +1,5 @@
-<div class="post section">
+<% deer_class = post.deer ? 'deer' : '' %>
+<div class="post section <%= deer_class %>">
   <h3><a href="<%= user_path(post.user) %>"> <%= post.user.name %> </a></h3>
   <p><%= post.content %></p>
   <%= image_tag post.picture.url if post.picture? %>
@@ -6,7 +7,11 @@
     <div><strong>Weight: </strong><%= post.deer.weight %></div>
     <div><strong>Points: </strong><%= post.deer.points %></div>
     <div><strong>Season: </strong></strong><%= post.deer.season %></div>
-    <div><strong>County: </strong><%= post.deer.county.name %></div>
+  <% end %>
+  <% if post.location %>
+    <a href="<%= post_path(post) %>">
+      <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?zoom=12&scale=2&size=600x300&maptype=terrain&markers=color:orange%7C#{JSON.parse(post.location)['lat']},#{JSON.parse(post.location)['lng']}&key=AIzaSyDjwq7jh0cqrdKuqFlQ5GDX3ldFTbChJ8M") %>
+    </a>
   <% end %>
   <div class="Post like" id="<%= post.id %>">
     <%= render partial: 'likes/like_form', locals: { likeable: post } %>

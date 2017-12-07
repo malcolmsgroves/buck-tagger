@@ -22,10 +22,11 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+
   private
     def post_params
-      params.require(:post).permit(:content, :picture,
+      params.require(:post).permit(:content, :picture, :location,
                                     deer_attributes: [:weight, :season,
-                                                      :sex, :county_id])
+                                                      :sex, :points])
     end
 end
