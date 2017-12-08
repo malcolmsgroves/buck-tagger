@@ -45,6 +45,17 @@ class User < ApplicationRecord
     following.destroy(other_user)
   end
 
+  # Gets the users last location
+  def last_location
+    location = ''
+    begin
+      location = posts.where.not(location: [nil, ""]).first.location
+    rescue
+      location = { lat: 44, lng: -70 }
+    end
+    location.to_json
+  end
+
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)

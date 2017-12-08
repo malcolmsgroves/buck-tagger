@@ -18,11 +18,17 @@
     <%= link_to "delete", post_path(@post.id), method: :delete %>
   <% end %>
 
-
+  <div class="map" id="map"></div>
   <div class="comments">
     <%= render @post.comments %>
     <%= render partial: "shared/comment_form", locals: { post: @post } %>
   </div>
-
+  <% if @post.location %>
+    <script>
+      $(function() {
+        renderPostMap(JSON.parse(<%= raw @post.location.to_json %>));
+      })
+    </script>
+  <% end %>
 
 </div>

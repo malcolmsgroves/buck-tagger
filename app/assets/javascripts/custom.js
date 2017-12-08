@@ -1,5 +1,4 @@
-console.log('in');
-marker = null;
+let marker = null;
 
 function validatePostForm() {
 
@@ -27,7 +26,6 @@ function postTab() {
   let $scout_tab = $('.tab#scout');
 
   $deer_tab.on('click', function() {
-    console.log('deer')
     $deer_form.show()
     $scout_form.hide()
     $deer_tab.addClass('current_tab');
@@ -44,19 +42,46 @@ function postTab() {
 
   $deer_tab.click();
 }
-
-
-function initMap() {
-
-  let uluru = {lat: 44, lng: -72};
-  map = new google.maps.Map(document.getElementById('map'), {
+/*
+function initMap(location) {
+  let map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
-    center: uluru,
+    center: location,
     mapTypeId: 'terrain'
   });
+  return map;
+}
+*/
+function renderPostMap(location) {
+  console.log('mapping');
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 6,
+    center: location,
+    mapTypeId: 'terrain'
+  });
+  google.maps.event.addListenerOnce(map, 'idle', function(){
+    marker = null;
+    console.log('loaded');
+    google.maps.event.clearListeners(map, 'click');
+    map.setCenter(location);
+    placeMarker(location, map);
+  });
+}
 
-  google.maps.event.addListener(map, 'click', function(event) {
-     placeMarker(event.latLng);
+function renderFormMap(location) {
+  console.log('form mapping');
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 6,
+    center: location,
+    mapTypeId: 'terrain'
+  });
+  google.maps.event.addListenerOnce(map, 'idle', function() {
+    marker = null;
+    google.maps.event.addListener(map, 'click', function(event) {
+       placeMarker(event.latLng, map);
+       console.log(marker);
+    });
+    map.setCenter(location);
   });
 }
 
@@ -70,16 +95,13 @@ function removePin() {
 
 
 
-function placeMarker(location) {
-  console.log(location);
+function placeMarker(location, map) {
   if (!marker) {
-    console.log('marking');
     marker = new google.maps.Marker({
       position: location,
       map: map
     });
   } else {
-    console.log('setting');
     marker.setPosition(location);
   }
   updateLocation(location);

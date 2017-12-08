@@ -23,6 +23,6 @@
     validatePostForm();
     postTab();
     removePin();
-    initMap();
+    renderFormMap(JSON.parse(<%= raw @location %>));
   })
 </script>
