@@ -1,6 +1,8 @@
 # Buck Tagger
 *The Social Network for Hunters*
 
+[live](https://vast-headland-51216.herokuapp.com)
+
 A social network for deer hunters that is modeled off of Strava. Users are able to follow other users and create georeferenced posts with images and deer stats. Notable features include:
 * OAuth2.0 user authentication through the Devise gem.
 * Google Maps Javascript API for georeferencing posts
@@ -39,7 +41,7 @@ In order to allow users to georeference their posts, the post form includes a Go
 
 ![Post form](./app/assets/images/post_form.png)
 
-Client-side Google Maps JS API for post georeferencing in app/assets/javascripts/custom.js
+Client-side Google Maps JS API for post georeferencing in *app/assets/javascripts/custom.js*
 ```javascript
 function initMap(location, zoom) {
   let map = new google.maps.Map(document.getElementById('map'), {
