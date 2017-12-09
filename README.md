@@ -36,6 +36,7 @@ def self.find_for_google_oauth2(access_token, signed_in_resource = nil)
 
 ## Google Maps Javascript API
 In order to allow users to georeference their posts, the post form includes a Google Maps JS API element. Users can select a location by clicking on the map. On a click, the map listener updates a hidden field in the post form to include the latitude and longitude of the selected location.
+
 ![Post form](./app/assets/images/post_form.png)
 
 Client-side Google Maps JS API for post georeferencing in app/assets/javascripts/custom.js
