@@ -1,10 +1,11 @@
 # Buck Tagger
 *The Social Network for Hunters*
+
 A social network for deer hunters that is modeled off of Strava. Users are able to follow other users and create georeferenced posts with images and deer stats. Notable features include:
 * OAuth2.0 user authentication through the Devise gem.
 * Google Maps Javascript API for georeferencing posts
 * Google Geocoding API for server-side reverse geocoding.
-* Carrierwave file upload for post images.
+* Carrierwave file upload with AWS S3 cloud storage for images.
 
 ## OAuth2.0 Authentication
 User authentication is implemented with the Devise gem. Users can choose to either create an original account or connect their google account for authentication, in which case their profile will be initialized with default information that can be updated after account creation. Account confirmation emails are sent with the Heroku SendGrid add-on.
@@ -106,4 +107,75 @@ function renderPostMap(location) {
 }
 ```
 
+## Google Geocoding API
+On the server side, the Google Geocoding API is used to reverse geocode the longitude and latitude of the post locations. The *get* requests are made using the **rest-client** gem. The town, county, and state associated with the coordinates are saved to the database as a JSON text object. 
 
+Google reverse geocoding request in *app/helpers/posts_helper.rb*
+```ruby
+def reverse_geocode(location)
+    latlng_string = "#{location['lat']},#{location['lng']}"
+    response = RestClient::Request.execute(
+      method: :get,
+      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latlng_string}&key=#{ENV['GOOGLE_SERVER_KEY']}"
+    )
+    address = {}
+    begin
+      JSON.parse(response)["results"][0]["address_components"].each do |component|
+        case component['types'][0]
+        when 'locality'
+          address[:town] = component['long_name']
+        when 'administrative_area_level_2'
+          address[:county] = component['long_name']
+        when 'administrative_area_level_1'
+          address[:state] = component['long_name']
+        end
+      end
+    rescue
+      address[:town] = 'unknown'
+    end
+
+    address
+end
+```
+
+## Carrierwave Image Upload
+User profile picture and post image upload is implemented with the **carrierwave** gem and uses the Amazon Web Services S3 storage service in production. Image size is limited to 400 x 400 pixels and resizing is implemented with the MiniMagick submodule. 
+
+Picture uploader class in *app/uploaders/picture_uploader.rb*
+```ruby
+class PictureUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+  process resize_to_limit: [400, 400]
+
+  # Choose what kind of storage to use for this uploader:
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def extension_whitelist
+    %w(jpg jpeg gif png)
+  end
+
+  # Override the filename of the uploaded files:
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  protected
+    def secure_token
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    end
+end
+```
+
+## Future Directions
+*   Allow users to make their profile private so that other users must make a follow request.
+*   Enable private georeferences so that users can hide the location of their secret deer haunts from their followers.
+*   Deploy a more rigorous continuous testing suit that includes more rails integration tests and a Jasmine testing framework for the client-side javascript.
