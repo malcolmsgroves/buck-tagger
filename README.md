@@ -4,7 +4,7 @@
 [live](https://vast-headland-51216.herokuapp.com)
 
 A social network for deer hunters that is modeled off of Strava. Users are able to follow other users and create georeferenced posts with images and deer stats. Notable features include:
-* [OAuth2.0 user authentication through the Devise gem](#oauth2.0-authentication)
+* [OAuth2.0 user authentication through the Devise gem](#oauth20-authentication)
 * Google Maps Javascript API for georeferencing posts
 * Google Geocoding API for server-side reverse geocoding.
 * Carrierwave file upload with AWS S3 cloud storage for images.
