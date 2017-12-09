@@ -25,20 +25,14 @@ ActiveRecord::Schema.define(version: 20171208234516) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "counties", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-  end
-
   create_table "deers", force: :cascade do |t|
     t.integer "weight"
     t.string "season"
     t.string "sex"
     t.integer "points"
-    t.bigint "county_id"
     t.bigint "post_id"
-    t.index ["county_id"], name: "index_deers_on_county_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_deers_on_post_id"
   end
 
@@ -108,8 +102,6 @@ ActiveRecord::Schema.define(version: 20171208234516) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "deers", "counties"
-  add_foreign_key "deers", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
 end

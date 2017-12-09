@@ -6,7 +6,8 @@
   <% if post.deer %>
     <div><strong>Weight: </strong><%= post.deer.weight %></div>
     <div><strong>Points: </strong><%= post.deer.points %></div>
-    <div><strong>Season: </strong></strong><%= post.deer.season %></div>
+    <div><strong>Season: </strong><%= post.deer.season %></div>
+    <div><strong>Sex: </strong><%= post.deer.sex %></div>
   <% end %>
   <% if post.location %>
     <a href="<%= post_path(post) %>">

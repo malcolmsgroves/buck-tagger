@@ -49,11 +49,11 @@ class User < ApplicationRecord
   def last_location
     location = ''
     begin
-      location = posts.where.not(location: [nil, ""]).first.location
+      location = JSON.parse(posts.where.not(location: [nil, ""]).first.location)
     rescue
       location = { lat: 44, lng: -70 }
     end
-    location.to_json
+    location
   end
 
   # Returns true if the current user is following the other user.

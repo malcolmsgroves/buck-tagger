@@ -7,7 +7,8 @@
     <% if @post.deer %>
       <div><strong>Weight: </strong><%= @post.deer.weight %></div>
       <div><strong>Points: </strong><%= @post.deer.points %></div>
-      <div><strong>Season: </strong></strong><%= @post.deer.season %></div>
+      <div><strong>Season: </strong><%= @post.deer.season %></div>
+      <div><strong>Sex:    </strong><%= @post.deer.sex %></div>
     <% end %>
     <% if @post.address %>
       <script>
@@ -21,16 +22,16 @@
   <div class="Post like" id="<%= @post.id %>">
     <%= render partial: 'likes/like_form', locals: { likeable: @post } %>
   </div>
-  <strong>Posted <%= time_ago_in_words(@post.created_at) %> ago</strong>
-  <% if current_user?(@post.user) %>
-    <%= link_to "delete", post_path(@post.id), method: :delete %>
-  <% end %>
 
   <div class="post-map" id="map"></div>
   <div class="comments">
     <%= render @post.comments %>
     <%= render partial: "shared/comment_form", locals: { post: @post } %>
   </div>
+  <strong>Posted <%= time_ago_in_words(@post.created_at) %> ago</strong>
+  <% if current_user?(@post.user) %>
+    <%= link_to "delete", post_path(@post.id), method: :delete %>
+  <% end %>
   <% if @post.location %>
     <script>
       $(function() {

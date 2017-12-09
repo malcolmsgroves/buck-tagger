@@ -7,16 +7,19 @@ module PostsHelper
       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latlng_string}&key=#{ENV['GOOGLE_SERVER_KEY']}"
     )
     address = {}
-
-    JSON.parse(response)["results"][0]["address_components"].each do |component|
-      case component['types'][0]
-      when 'locality'
-        address[:town] = component['long_name']
-      when 'administrative_area_level_2'
-        address[:county] = component['long_name']
-      when 'administrative_area_level_1'
-        address[:state] = component['long_name']
+    begin
+      JSON.parse(response)["results"][0]["address_components"].each do |component|
+        case component['types'][0]
+        when 'locality'
+          address[:town] = component['long_name']
+        when 'administrative_area_level_2'
+          address[:county] = component['long_name']
+        when 'administrative_area_level_1'
+          address[:state] = component['long_name']
+        end
       end
+    rescue
+      address[:town] = 'NA'
     end
 
     address

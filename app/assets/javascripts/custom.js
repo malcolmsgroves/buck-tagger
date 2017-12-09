@@ -42,7 +42,7 @@ function postTab() {
 
   $deer_tab.click();
 }
-/*
+
 function initMap(location) {
   let map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
@@ -51,14 +51,11 @@ function initMap(location) {
   });
   return map;
 }
-*/
+
 function renderPostMap(location) {
   console.log('mapping');
-  let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: location,
-    mapTypeId: 'terrain'
-  });
+  let map = initMap(location);
+
   google.maps.event.addListenerOnce(map, 'idle', function(){
     marker = null;
     console.log('loaded');
@@ -70,11 +67,7 @@ function renderPostMap(location) {
 
 function renderFormMap(location) {
   console.log('form mapping');
-  let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: location,
-    mapTypeId: 'terrain'
-  });
+  let map = initMap(location);
   google.maps.event.addListenerOnce(map, 'idle', function() {
     marker = null;
     google.maps.event.addListener(map, 'click', function(event) {
@@ -108,7 +101,9 @@ function placeMarker(location, map) {
 }
 
 function updateLocation(location) {
-  $('#form_location').val(JSON.stringify(location));
+  $('#form_location').each(function() {
+    $(this).val(JSON.stringify(location));
+  });
 }
 
 function renderAddress(address) {
