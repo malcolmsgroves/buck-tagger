@@ -19,7 +19,7 @@ module PostsHelper
         end
       end
     rescue
-      address[:town] = 'NA'
+      address[:town] = 'unknown'
     end
 
     address

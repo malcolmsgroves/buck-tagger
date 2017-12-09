@@ -43,9 +43,9 @@ function postTab() {
   $deer_tab.click();
 }
 
-function initMap(location) {
+function initMap(location, zoom) {
   let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
+    zoom: zoom,
     center: location,
     mapTypeId: 'terrain'
   });
@@ -54,7 +54,7 @@ function initMap(location) {
 
 function renderPostMap(location) {
   console.log('mapping');
-  let map = initMap(location);
+  let map = initMap(location, 10);
 
   google.maps.event.addListenerOnce(map, 'idle', function(){
     marker = null;
@@ -67,7 +67,7 @@ function renderPostMap(location) {
 
 function renderFormMap(location) {
   console.log('form mapping');
-  let map = initMap(location);
+  let map = initMap(location, 7);
   google.maps.event.addListenerOnce(map, 'idle', function() {
     marker = null;
     google.maps.event.addListener(map, 'click', function(event) {
