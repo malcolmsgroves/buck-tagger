@@ -9,6 +9,14 @@
       <div><strong>Points: </strong><%= @post.deer.points %></div>
       <div><strong>Season: </strong></strong><%= @post.deer.season %></div>
     <% end %>
+    <% if @post.address %>
+      <script>
+        $(function() {
+          console.log('before');
+          renderAddress(<%= raw @post.address %>);
+        })
+      </script>
+    <% end %>
   </div>
   <div class="Post like" id="<%= @post.id %>">
     <%= render partial: 'likes/like_form', locals: { likeable: @post } %>
@@ -18,7 +26,7 @@
     <%= link_to "delete", post_path(@post.id), method: :delete %>
   <% end %>
 
-  <div class="map" id="map"></div>
+  <div class="post-map" id="map"></div>
   <div class="comments">
     <%= render @post.comments %>
     <%= render partial: "shared/comment_form", locals: { post: @post } %>

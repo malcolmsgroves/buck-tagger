@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include PostsHelper
+
   before_action :authenticate_user!
   def show
     @post = Post.find(params[:id])
@@ -6,6 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.address = reverse_geocode(JSON.parse(@post.location)).to_json
 
     if @post.save
       flash[:success] = "Post successfully created"

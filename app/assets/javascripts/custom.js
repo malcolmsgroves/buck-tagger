@@ -110,3 +110,21 @@ function placeMarker(location, map) {
 function updateLocation(location) {
   $('#form_location').val(JSON.stringify(location));
 }
+
+function renderAddress(address) {
+  console.log(address);
+
+  $post_header = $('.post-header');
+  console.log($post_header);
+
+  if(address.town) {
+    $post_header.append(`<div><strong>Town: </strong>${address.town}</div>`);
+  }
+  if(address.county) {
+    $post_header.append(`<div><strong>County: </strong>${address.county}</div>`);
+  }
+  if(address.state) {
+    $post_header.append(`<div><strong>State: </strong>${address.state}</div>`);
+  }
+
+}

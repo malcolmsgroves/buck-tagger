@@ -127,16 +127,15 @@ select {
   }
 }
 
-#map {
-  height: 200px;
-  width: 90%;
-  cursor: pointer;
-}
 
 .post-map {
   height: 600px;
   width: 80%;
   margin: auto;
+}
+.form-map {
+  height: 200px;
+  width: 90%;
 }
 
 .form-control {
