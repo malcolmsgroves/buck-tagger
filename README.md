@@ -5,9 +5,9 @@
 
 A social network for deer hunters that is modeled off of Strava. Users are able to follow other users and create georeferenced posts with images and deer stats. Notable features include:
 * [OAuth2.0 user authentication through the Devise gem](#oauth20-authentication)
-* Google Maps Javascript API for georeferencing posts
-* Google Geocoding API for server-side reverse geocoding.
-* Carrierwave file upload with AWS S3 cloud storage for images.
+* [Google Maps Javascript API for georeferencing posts](#google-maps-javascript-api)
+* [Google Geocoding API for server-side reverse geocoding](#google-geocoding-api)
+* [Carrierwave file upload with AWS S3 cloud storage for images](#carrierwave-image-upload)
 
 ## OAuth2.0 Authentication
 User authentication is implemented with the Devise gem. Users can choose to either create an original account or connect their google account for authentication, in which case their profile will be initialized with default information that can be updated after account creation. Account confirmation emails are sent with the Heroku SendGrid add-on.
