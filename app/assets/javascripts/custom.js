@@ -53,12 +53,10 @@ function initMap(location, zoom) {
 }
 
 function renderPostMap(location) {
-  console.log('mapping');
   let map = initMap(location, 10);
 
   google.maps.event.addListenerOnce(map, 'idle', function(){
     marker = null;
-    console.log('loaded');
     google.maps.event.clearListeners(map, 'click');
     map.setCenter(location);
     placeMarker(location, map);
@@ -66,13 +64,11 @@ function renderPostMap(location) {
 }
 
 function renderFormMap(location) {
-  console.log('form mapping');
   let map = initMap(location, 7);
   google.maps.event.addListenerOnce(map, 'idle', function() {
     marker = null;
     google.maps.event.addListener(map, 'click', function(event) {
        placeMarker(event.latLng, map);
-       console.log(marker);
     });
     map.setCenter(location);
   });

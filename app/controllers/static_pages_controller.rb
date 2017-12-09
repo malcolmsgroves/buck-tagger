@@ -7,9 +7,6 @@ class StaticPagesController < ApplicationController
     @sex_options    = [nil, 'buck', 'doe']
     @feed_items     = current_user.feed.paginate(page: params[:id])
     @location       = current_user.last_location.to_json
-    puts @location
-    puts
-    puts
   end
 
   def help
