@@ -101,7 +101,7 @@ function placeMarker(location, map) {
 }
 
 function updateLocation(location) {
-  $('#form_location').each(function() {
+  $('.form_location').each(function(i, obj) {
     $(this).val(JSON.stringify(location));
   });
 }

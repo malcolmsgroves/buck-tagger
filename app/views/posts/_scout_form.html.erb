@@ -1,7 +1,7 @@
 <div id="scout_form">
   <%= form_for(@post, html: { id: 'new_scout_post' }) do |f| %>
     <%= render "shared/error_messages", object: f.object %>
-    <%= f.hidden_field :location, value: '', id: "form_location" %>
+    <%= f.hidden_field :location, value: '', class: "form_location" %>
     <div><%= f.text_area :content, placeholder: "Where did you go? What did you see?" %></div>
     <div><%= f.submit "Post", class: "btn btn-primary" %></div>
     <span class="picture">

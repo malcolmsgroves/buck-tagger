@@ -22,7 +22,7 @@
         <%= ff.number_field(:points, class: "form-control") %>
       </div>
     <% end %>
-    <%= f.hidden_field :location, value: '', id: "form_location" %>
+    <%= f.hidden_field :location, value: '', class: "form_location" %>
     <div><%= f.text_area :content, placeholder: "Tag that buck..." %></div>
     <div><%= f.submit "Post", class: "btn btn-primary" %></div>
     <span class="picture">
