@@ -74,6 +74,43 @@ function renderFormMap(location) {
   });
 }
 
+function renderProfileMap(posts) {
+  let map = initMap( { lat: 44, lng: -70 }, 7);
+  markers = [];
+
+  posts.forEach(function(element) {
+    // element = [post, deer?]
+    if(element[0].location) {
+      console.log(element[0]);
+      let icon = element[1] ? 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png' : 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+      console.log(icon);
+      let marker = new google.maps.Marker({
+                    position: JSON.parse(element[0].location),
+                    map: map,
+                    icon: icon,
+                  });
+
+      // show post when marker is clicked
+      google.maps.event.addListener(marker, 'click', function(event) {
+        window.location = `/posts/${element[0].id}`;
+      })
+      markers.push(marker);
+
+    }
+    else {
+      console.log('no location');
+    }
+  })
+  /*
+  let bounds = new google.maps.LatLngBounds();
+  for (let i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i].getPosition());
+  }
+
+  map.fitBounds(bounds);
+  */
+}
+
 function removePin() {
   $('#remove_pin').on('click', function(e) {
     marker.setMap(null)

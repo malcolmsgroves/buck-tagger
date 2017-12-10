@@ -11,6 +11,7 @@
           <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
         <% end %>
       </ul>
+      <div class="post-map" id="map"></div>
     </div>
   </div>
 </div>
@@ -29,3 +30,9 @@
     </div>
   </div>
 </div>
+<script>
+  $(function() {
+    console.log(<%= raw @user.posts.all.to_json %>);
+    renderProfileMap(<%= raw @user.posts.all.map{|post| [post, post.deer ? true : false]}.to_json %>);
+  })
+</script>

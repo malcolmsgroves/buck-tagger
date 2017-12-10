@@ -150,7 +150,10 @@ ul.notifications {
     list-style: none;
     margin: 0;
     &.new {
-      background-color: red; /* make this camo */
+      background-color: #FF5733;
+      a {
+        color: white;
+      }
     }
   }
 }

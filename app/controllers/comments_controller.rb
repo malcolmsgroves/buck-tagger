@@ -6,16 +6,16 @@ class CommentsController < ApplicationController
       @comment.create_notification!(actor_id: current_user.id,
                                     recipient_id: @comment.post.user.id)
       flash[:success] = "Comment successfully created"
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     else
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     Comment.find(params[:id]).destroy
     flash[:success] = "Comment successfully destroyed"
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
