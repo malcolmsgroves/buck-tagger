@@ -119,3 +119,22 @@ function renderAddress(address) {
   }
 
 }
+
+function notification_count() {
+  console.log('counting');
+  response = $.getJSON("/notifications/unread_notifications")
+    .done(function(data) {
+      console.log(data);
+      if(data.unread) {
+        $('#nav-notification').css( { color: 'red' } );
+      }
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      console.log('complete');
+    })
+}
+
+$(document).on('turbolinks:load', notification_count);

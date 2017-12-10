@@ -1,6 +1,9 @@
 <% provide(:title, "Notifications") %>
-<h1>Recent Notifications</h1>
-<div class="notifications section">
+<div class="section col-sm-6">
+  <h3>Notifications</h3>
   <%= will_paginate @notifications %>
-  <%= render @notifications %>
+  <ul class="notifications">
+    <%= render @notifications %>
+  </ul>
+  <%= "You have no notifications" unless @notifications.any? %>
 </div>

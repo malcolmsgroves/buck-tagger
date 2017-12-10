@@ -141,3 +141,16 @@ select {
 .form-control {
   width: 50%;
 }
+
+/* notifications */
+ul.notifications {
+  padding: 0;
+  li {
+    padding: 1em;
+    list-style: none;
+    margin: 0;
+    &.new {
+      background-color: red; /* make this camo */
+    }
+  }
+}

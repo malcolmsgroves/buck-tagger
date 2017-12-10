@@ -14,7 +14,7 @@
         <%= link_to 'Users', users_path %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Notifications', notifications_path %>
+        <%= link_to 'Notifications', notifications_path, id: "nav-notification" %>
       </li>
       <li class="nav-item">
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
