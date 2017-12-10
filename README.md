@@ -1,11 +1,13 @@
 # Buck Tagger
 *The Social Network for Hunters*
 
+[live](https://vast-headland-51216.herokuapp.com)
+
 A social network for deer hunters that is modeled off of Strava. Users are able to follow other users and create georeferenced posts with images and deer stats. Notable features include:
-* OAuth2.0 user authentication through the Devise gem.
-* Google Maps Javascript API for georeferencing posts
-* Google Geocoding API for server-side reverse geocoding.
-* Carrierwave file upload with AWS S3 cloud storage for images.
+* [OAuth2.0 user authentication through the Devise gem](#oauth20-authentication)
+* [Google Maps Javascript API for georeferencing posts](#google-maps-javascript-api)
+* [Google Geocoding API for server-side reverse geocoding](#google-geocoding-api)
+* [Carrierwave file upload with AWS S3 cloud storage for images](#carrierwave-image-upload)
 
 ## OAuth2.0 Authentication
 User authentication is implemented with the Devise gem. Users can choose to either create an original account or connect their google account for authentication, in which case their profile will be initialized with default information that can be updated after account creation. Account confirmation emails are sent with the Heroku SendGrid add-on.
@@ -36,9 +38,10 @@ def self.find_for_google_oauth2(access_token, signed_in_resource = nil)
 
 ## Google Maps Javascript API
 In order to allow users to georeference their posts, the post form includes a Google Maps JS API element. Users can select a location by clicking on the map. On a click, the map listener updates a hidden field in the post form to include the latitude and longitude of the selected location.
+
 ![Post form](./app/assets/images/post_form.png)
 
-Client-side Google Maps JS API for post georeferencing in app/assets/javascripts/custom.js
+Client-side Google Maps JS API for post georeferencing in *app/assets/javascripts/custom.js*
 ```javascript
 function initMap(location, zoom) {
   let map = new google.maps.Map(document.getElementById('map'), {
